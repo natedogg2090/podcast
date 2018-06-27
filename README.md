@@ -1,6 +1,6 @@
 # Podcast
 
-This Ruby Gem provides a CLI to view a list of podcasts from NPR(https://www.npr.org/podcasts/organizations/1).
+This Ruby Gem provides a CLI to view a list of podcasts from [NPR](https://www.npr.org/podcasts/organizations/1).
 
 ## Installation
 
