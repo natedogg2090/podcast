@@ -22,7 +22,7 @@ Or install it yourself as:
 
 Type the following line and follow the prompts.
 
-$ podcast
+    $ podcast
 
 ## Development
 
