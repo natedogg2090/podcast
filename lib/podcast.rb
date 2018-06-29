@@ -1,5 +1,5 @@
-require "podcast/version"
+# require './config/environment'
 
-module Podcast
-  # Your code goes here...
-end
+# module Podcast
+#   # Your code goes here...
+# end
