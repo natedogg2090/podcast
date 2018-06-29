@@ -8,8 +8,7 @@ class Podcast::CLI
 
   def list_podcasts
     puts "welcome to the podcast gem! here is list of podcasts:"
-    puts "1. Car Talk - Games & Hobbies"
-    puts "2. Fresh Air - Arts"
+    @podcasts = Podcast::PodcastScraper.scrape_index
   end
 
   def menu
