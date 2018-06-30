@@ -1,26 +1,29 @@
-# require 'open-uri'
+require 'open-uri'
 # require 'pry'
 
 class Podcast::PodcastScraper
   attr_accessor :name, :category
 
-  def self.scrape_index
+  def self.scrape_npr_directory
     # return all the podcast instances produced by NPR
-    # puts "1. Car Talk - Games & Hobbies"
-    # puts "2. Fresh Air - Arts"
 
     @podcast = []
 
-    podcast_1 = self.new
-    podcast_1.name = "Car Talk"
-    podcast_1.category = "Games & Hobbies"
+    doc = Nokogiri::HTML(open("https://www.npr.org/podcasts/organizations/1"))
 
-    podcast_2 = self.new
-    podcast_2.name = "Fresh Air"
-    podcast_2.category = "Arts"
+    doc.css(".item-podcast").each do |podcast|
+      podcast_hash = {}
 
-    @podcast << podcast_1
-    @podcast << podcast_2
+      name = podcast.css("h1.title").text.strip
+      category = podcast.css("h2.slug").text
+      podcast_hash[:name] = name
+      podcast_hash[:category] = category
+
+      @podcast << podcast_hash
+    end
+
+    binding.pry
+
   end
 
 end
