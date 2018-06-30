@@ -2,6 +2,5 @@
 
 require './config/environment'
 require "bundler/setup"
-require "podcast"
 
 Podcast::CLI.new.call

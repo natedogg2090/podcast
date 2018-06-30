@@ -21,14 +21,24 @@ class Podcast::CLI
       puts "enter the number for the podcast that you would you like more information, type list to see all the podcasts or type exit:"
       input = gets.strip.downcase
       if input.to_i > 0
-        the_podcast = @podcast[input.to_i - 1]
-        puts "#{the_podcast.name} - #{the_podcast.category}"
+        podcast_details(input)
       elsif input == "list"
         list_podcasts
       else
         puts "invalid input. type list or exit"
       end
     end
+  end
+
+  def podcast_details(input)
+    the_podcast = @podcast[input.to_i - 1]
+    details = Podcast::PodcastScraper.scrape_npr_podcast(the_podcast.url)
+    binding.pry
+        # puts "#{the_podcast.name} - #{the_podcast.category}"
+
+        # based on the users selection they would then be presented more information on that specific podcast
+        # information must be scraped from the podcast page
+        # each instance contains the podcast page url
   end
 
   def goodbye

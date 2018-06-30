@@ -1,5 +1,6 @@
+require "./config/environment"
 require "bundler/setup"
-require "podcast"
+# require "podcast"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
