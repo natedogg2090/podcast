@@ -10,7 +10,6 @@ class Podcast::CLI
     puts "welcome to the podcast gem! here is list of podcasts:"
     @podcast = Podcast::PodcastScraper.scrape_npr_directory
     @podcast.each.with_index(1) do |podcast, i|
-      binding.pry
       puts "#{i}. #{podcast.name} - #{podcast.category}"
     end
   end
