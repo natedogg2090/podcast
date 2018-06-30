@@ -29,10 +29,10 @@ class Podcast::PodcastScraper
 
     episode_hash = {}
 
-    episode_hash[:description] = doc.css("div.detail-overview-content col2, p").children[0].text
+    episode_hash[:description] = doc.css("div.detail-overview-content col2, p").children[0].text.strip
     episode_hash[:date] = doc.css("div.item-info h3.episode-date .date").first.text
     episode_hash[:title] = doc.css("div.item-info h2.title").first.text
-    episode_hash[:teaser] = doc.css("div.item-info p.teaser").first.text
+    episode_hash[:teaser] = doc.css("p.teaser").first.text.strip.gsub(/\bJune\b\s...\s....\s.\s/,"")
 
     episode_hash
 
