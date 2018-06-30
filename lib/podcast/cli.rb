@@ -37,7 +37,8 @@ class Podcast::CLI
   def podcast_details(input)
     the_podcast = @podcast[input.to_i - 1]
     details = Podcast::PodcastScraper.scrape_npr_podcast(the_podcast.url)
-        puts "#{the_podcast.name.upcase}"
+        puts "----------------------".colorize(:green)
+        puts "#{the_podcast.name.upcase}".colorize(:blue)
         puts "#{the_podcast.category}"
         puts ""
         puts "Description: " + "#{details[:description]}"
@@ -45,6 +46,7 @@ class Podcast::CLI
         puts "Latest Episode: " + "#{details[:title]}"
         puts "Date: " + "#{details[:date]}"
         puts "Episode Teaser:" + " #{details[:teaser]}"
+        puts "----------------------".colorize(:green)
 
   end
 
