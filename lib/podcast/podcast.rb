@@ -11,8 +11,8 @@ class Podcast::Podcast
 
     end
 
-    def self.create_from_collection(npr_podcasts)
-      npr_podcasts.each do |podcast|
+    def self.create_from_collection(podcasts_array)
+      podcasts_array.each do |podcast|
         self.new(podcast)
       end
 

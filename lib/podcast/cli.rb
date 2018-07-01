@@ -2,14 +2,21 @@ class Podcast::CLI
 
   def call
     make_podcasts
-    add_attributes_to_podcast
     list_podcasts
+    add_attributes_to_podcast
     menu
   end
 
   def make_podcasts
-    npr_podcasts = Podcast::PodcastScraper.scrape_npr_directory
-    Podcast::Podcast.create_from_collection(npr_podcasts)
+    podcasts = Podcast::PodcastScraper.scrape_npr_directory
+    Podcast::Podcast.create_from_collection(podcasts)
+  end
+
+  def add_attributes_to_podcast
+    Podcast::Podcast.all.each do |podcast|
+      attributes = Podcast::PodcastScraper.scrape_npr_podcast(podcast.url)
+      podcast.add_podcast_attributes(attributes)
+    end
   end
 
   def list_podcasts
@@ -23,12 +30,13 @@ class Podcast::CLI
 
   def menu
     input = nil
+    podcast_count = Podcast::Podcast.all.count
 
     while input != "exit"
       puts ""
       puts "Enter the number for the podcast that you would you like more information, type 'list' to see all the podcasts or type 'exit':"
       input = gets.strip.downcase
-      if input.to_i > 0
+      if input.to_i.between?(1, podcast_count)
         display_podcast_details(input)
       elsif input == "list"
         list_podcasts
@@ -40,18 +48,11 @@ class Podcast::CLI
     end
   end
 
-  def add_attributes_to_podcast
-    Podcast::Podcast.all.each do |podcast|
-      attributes = Podcast::PodcastScraper.scrape_npr_podcast(podcast.url)
-      podcast.add_podcast_attributes(attributes)
-    end
-  end
-
   def display_podcast_details(input)
     podcast = Podcast::Podcast.all[input.to_i - 1]
     puts "----------------------".colorize(:green)
     puts "#{podcast.name.upcase}".colorize(:blue)
-    puts "#{podcast.category}"
+    puts "#{podcast.category}".colorize(:yellow)
     puts ""
     puts "Description: " + "#{podcast.description}"
     puts ""

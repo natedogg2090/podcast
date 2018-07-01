@@ -1,3 +1,5 @@
+require "bundler/setup"
+require "irb"
 require 'pry'
 require 'nokogiri'
 require 'open-uri'

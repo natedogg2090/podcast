@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
 require './config/environment'
-require "bundler/setup"
 
 Podcast::CLI.new.call
