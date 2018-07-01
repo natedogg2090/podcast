@@ -2,7 +2,6 @@ require 'pry'
 require 'nokogiri'
 require 'open-uri'
 require 'colorize'
-require 'colorized_string'
 
 require_relative "../lib/podcast/version"
 require_relative "../lib/podcast/cli"
