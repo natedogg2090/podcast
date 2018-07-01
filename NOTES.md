@@ -23,6 +23,3 @@ title:
 publish_date:
 duration:
 summary:
-
-
-give the user an opportunity to download the episode or play via link
