@@ -3,7 +3,6 @@ class Podcast::CLI
   def call
     make_podcasts
     list_podcasts
-    add_attributes_to_podcast
     menu
   end
 
@@ -12,11 +11,10 @@ class Podcast::CLI
     Podcast::Podcast.create_from_collection(podcasts)
   end
 
-  def add_attributes_to_podcast
-    Podcast::Podcast.all.each do |podcast|
-      attributes = Podcast::PodcastScraper.scrape_npr_podcast(podcast.url)
-      podcast.add_podcast_attributes(attributes)
-    end
+  def add_attributes_to_podcast(input)
+    podcast = Podcast::Podcast.all.find{|pod| pod.id == input.to_i - 1}
+    attributes = Podcast::PodcastScraper.scrape_npr_podcast(podcast.url)
+    podcast.add_podcast_attributes(attributes)
   end
 
   def list_podcasts
@@ -37,6 +35,7 @@ class Podcast::CLI
       puts "Enter the number for the podcast that you would you like more information, type 'list' to see all the podcasts or type 'exit':"
       input = gets.strip.downcase
       if input.to_i.between?(1, podcast_count)
+        add_attributes_to_podcast(input)
         display_podcast_details(input)
       elsif input == "list"
         list_podcasts

@@ -6,12 +6,13 @@ class Podcast::PodcastScraper
 
     doc = Nokogiri::HTML(open("https://www.npr.org/podcasts/organizations/1"))
 
-    doc.css(".item-podcast").each do |podcast|
+    doc.css(".item-podcast").each_with_index do |podcast, i|
       podcast_hash = {}
 
       podcast_hash[:name] = podcast.css("h1.title").text.strip
       podcast_hash[:category] = podcast.css("h2.slug").text
       podcast_hash[:url] = podcast.css("h1.title a").attribute("href").value
+      podcast_hash[:id] = i
       npr_podcasts << podcast_hash  
       
     end

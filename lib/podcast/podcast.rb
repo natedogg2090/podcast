@@ -1,5 +1,5 @@
 class Podcast::Podcast
-  attr_accessor :name, :category, :url, :description, :date, :title, :teaser
+  attr_accessor :name, :category, :url, :description, :date, :title, :teaser, :id
 
   @@all = []
 
