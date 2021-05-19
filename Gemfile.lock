@@ -10,12 +10,14 @@ GEM
     colorize (0.8.1)
     diff-lcs (1.3)
     method_source (1.0.0)
-    mini_portile2 (2.4.0)
-    nokogiri (1.10.9)
-      mini_portile2 (~> 2.4.0)
+    mini_portile2 (2.5.1)
+    nokogiri (1.11.4)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     pry (0.13.0)
       coderay (~> 1.1)
       method_source (~> 1.0)
+    racc (1.5.2)
     rake (13.0.1)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
@@ -37,7 +39,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.16)
   colorize
-  nokogiri (~> 1.10.4)
+  nokogiri (~> 1.11.4)
   podcast!
   pry
   rake (>= 12.3.3)
